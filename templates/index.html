@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Interactive Web Scraper</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.container {
+    width: 600px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(135deg, #00e5ff, #1de9b6);
+    color: black;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.12);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.card a {
+    color: #00ffea;
+    text-decoration: none;
+    font-weight: 500;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>📰 Latest Tech News</h1>
+    <button onclick="loadNews()">Fetch Headlines</button>
+    <div id="results"></div>
+</div>
+
+<script>
+function loadNews() {
+    fetch("/scrape")
+    .then(res => res.json())
+    .then(data => {
+        const results = document.getElementById("results");
+        results.innerHTML = "";
+
+        data.forEach(item => {
+            results.innerHTML += `
+                <div class="card">
+                    <a href="${item.link}" target="_blank">${item.title}</a>
+                </div>
+            `;
+        });
+    });
+}
+</script>
+
+</body>
+</html>
