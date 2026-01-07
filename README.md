@@ -51,10 +51,4 @@
 3️⃣ Open in browser
         http://127.0.0.1:5000/
 
-🌍 Live Demo
 
-👉 (Add Render deployment link here after deployment)
-
-Example:
-
-https://task-6-web-scraper.onrender.com
